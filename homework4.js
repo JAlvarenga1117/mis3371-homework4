@@ -232,7 +232,17 @@ function validateAll() {
 
     if (!hasErrors) {
         document.getElementById("submitBtn").style.display = "inline";
-        alert("No errors found. You can now submit.");
+        const remember = document.getElementById("rememberMe").checked;
+        const firstName = document.getElementById("firstName").value;
+
+    if (remember) {
+    setCookie("firstName", firstName, 48);
+    saveLocalStorage();
+    } else {
+    deleteCookie("firstName");
+    localStorage.clear();
+}
+    alert("No errors found. You can now submit.");
     } else {
         document.getElementById("submitBtn").style.display = "none";
         alert("Please fix the errors before submitting.");
@@ -316,4 +326,73 @@ function startNewUser() {
     document.getElementById("patientForm").reset();
     document.getElementById("welcomeMsg").innerText = "Welcome New User";
     document.getElementById("newUserArea").innerHTML = "";
+}
+
+function saveLocalStorage() {
+    localStorage.setItem("lastName", document.getElementById("lastName").value);
+    localStorage.setItem("middleInitial", document.getElementById("middleInitial").value);
+    localStorage.setItem("dob", document.getElementById("dob").value);
+    localStorage.setItem("addr1", document.getElementById("addr1").value);
+    localStorage.setItem("addr2", document.getElementById("addr2").value);
+    localStorage.setItem("city", document.getElementById("city").value);
+    localStorage.setItem("state", document.getElementById("state").value);
+    localStorage.setItem("zip", document.getElementById("zip").value);
+    localStorage.setItem("email", document.getElementById("email").value);
+    localStorage.setItem("phone", document.getElementById("phone").value);
+    localStorage.setItem("symptoms", document.getElementById("symptoms").value);
+    localStorage.setItem("userId", document.getElementById("userId").value);
+}
+
+function loadLocalStorage() {
+    if (getCookie("firstName") === "") {
+        return;
+    }
+
+    if (localStorage.getItem("lastName")) {
+        document.getElementById("lastName").value = localStorage.getItem("lastName");
+    }
+
+    if (localStorage.getItem("middleInitial")) {
+        document.getElementById("middleInitial").value = localStorage.getItem("middleInitial");
+    }
+
+    if (localStorage.getItem("dob")) {
+        document.getElementById("dob").value = localStorage.getItem("dob");
+    }
+
+    if (localStorage.getItem("addr1")) {
+        document.getElementById("addr1").value = localStorage.getItem("addr1");
+    }
+
+    if (localStorage.getItem("addr2")) {
+        document.getElementById("addr2").value = localStorage.getItem("addr2");
+    }
+
+    if (localStorage.getItem("city")) {
+        document.getElementById("city").value = localStorage.getItem("city");
+    }
+
+    if (localStorage.getItem("zip")) {
+        document.getElementById("zip").value = localStorage.getItem("zip");
+    }
+
+    if (localStorage.getItem("email")) {
+        document.getElementById("email").value = localStorage.getItem("email");
+    }
+
+    if (localStorage.getItem("phone")) {
+        document.getElementById("phone").value = localStorage.getItem("phone");
+    }
+
+    if (localStorage.getItem("symptoms")) {
+        document.getElementById("symptoms").value = localStorage.getItem("symptoms");
+    }
+
+    if (localStorage.getItem("userId")) {
+        document.getElementById("userId").value = localStorage.getItem("userId");
+    }
+
+    if (localStorage.getItem("state")) {
+        document.getElementById("state").value = localStorage.getItem("state");
+    }
 }
