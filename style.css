@@ -3,12 +3,16 @@
     height: auto;
 }
 
+iframe {
+    margin-bottom: 20px;
+    border: 1px solid #999;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #e6f0ff;   
     margin: 0;
     padding: 0;
-
     padding-bottom: 70px;
 }
 
@@ -16,6 +20,14 @@ body {
     background-color: #003366;
     color: white;
     padding: 15px;
+}
+
+#header h1 {
+    margin-bottom: 5px;
+}
+
+#welcomeMsg {
+    margin-top: 0;
 }
 
 #main {
@@ -37,8 +49,6 @@ body {
     width: 100%;
 }
 
-
-
 .formTable {
     width: 100%;
     border-collapse: collapse;
@@ -55,36 +65,50 @@ body {
     padding: 8px;
 }
 
-
 input, select, textarea {
     padding: 6px;
     border-radius: 4px;
     border: 1px solid #888;
     font-size: 14px;
+    box-sizing: border-box;
 }
-
 
 input[name="firstName"] {
     background-color: #f5faff;
 }
 
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+input[type="button"] {
+    background-color: #003366;
+    color: white;
+}
 
 input[type="submit"] {
     background-color: #28a745;
     color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
 }
 
 input[type="reset"] {
     background-color: #dc3545;
     color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
 }
 
+#reviewArea {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #f5faff;
+    border: 1px solid #003366;
+    border-radius: 6px;
+}
 
 a:link {
     color: yellow;
@@ -97,6 +121,7 @@ a:visited {
 a:hover {
     text-decoration: underline;
 }
+
 .errorMsg {
     color: red;
     font-size: 12px;
