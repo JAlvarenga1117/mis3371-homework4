@@ -266,3 +266,54 @@ function loadStates() {
             '<option value="">States unavailable</option>';
     });
 }
+
+function setCookie(name, value, hours) {
+    const d = new Date();
+    d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+    let cookieName = name + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let cookies = decodedCookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i].trim();
+        if (c.indexOf(cookieName) === 0) {
+            return c.substring(cookieName.length, c.length);
+        }
+    }
+
+    return "";
+}
+
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+function checkCookie() {
+    const firstName = getCookie("firstName");
+
+    if (firstName !== "") {
+        document.getElementById("welcomeMsg").innerText =
+            "Welcome back, " + firstName;
+
+        document.getElementById("firstName").value = firstName;
+
+        document.getElementById("newUserArea").innerHTML =
+            '<label><input type="checkbox" onclick="startNewUser()"> Not ' +
+            firstName + '? Click here to start as a new user.</label>';
+    } else {
+        document.getElementById("welcomeMsg").innerText = "Welcome New User";
+    }
+}
+
+function startNewUser() {
+    deleteCookie("firstName");
+    localStorage.clear();
+    document.getElementById("patientForm").reset();
+    document.getElementById("welcomeMsg").innerText = "Welcome New User";
+    document.getElementById("newUserArea").innerHTML = "";
+}
