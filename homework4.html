@@ -63,7 +63,7 @@ Today is: <span id="today">Loading...</span>
     
 <iframe src="info.html" width="100%" height="120" title="Patient Reminder"></iframe>
     
-<form action="thankyou.html">
+<form id="patientForm" action="thankyou.html">
 
 <table class="formTable">
 
@@ -78,7 +78,7 @@ Today is: <span id="today">Loading...</span>
 <input type="text" name="firstName" id="firstName" maxlength="30" required
 pattern="[A-Za-z'-]{1,30}"
 title="Enter 1 to 30 letters only."
-oninput="validateFirstName()" onblur="validateFirstName()">
+oninput="validateFirstName()" onblur="validateFirstName(); saveLocalStorage()">
 <br>
 <span id="firstNameError" class="errorMsg"></span>
 </td>
@@ -88,7 +88,7 @@ oninput="validateFirstName()" onblur="validateFirstName()">
 <input type="text" name="middleInitial" id="middleInitial" maxlength="1"
 pattern="[A-Za-z]{1}"
 title="Enter 1 letter only (optional)."
-oninput="validateMiddleInitial()" onblur="validateMiddleInitial()">
+oninput="validateMiddleInitial()" onblur="validateMiddleInitial(); saveLocalStorage()">
 <br>
 <span id="middleInitialError" class="errorMsg"></span>
 </td>
@@ -98,7 +98,7 @@ oninput="validateMiddleInitial()" onblur="validateMiddleInitial()">
 <input type="text" name="lastName" id="lastName" maxlength="30" required
 pattern="[A-Za-z'-]{1,30}"
 title="Enter 1 to 30 letters only."
-oninput="validateLastName()" onblur="validateLastName()">
+oninput="validateLastName()" onblur="validateLastName(); saveLocalStorage()">
 <br>
 <span id="lastNameError" class="errorMsg"></span>
 </td>
@@ -111,7 +111,7 @@ oninput="validateLastName()" onblur="validateLastName()">
 <input type="text" name="dob" id="dob" placeholder="MM/DD/YYYY" required
 pattern="\d{2}/\d{2}/\d{4}"
 title="Enter date in MM/DD/YYYY format."
-oninput="validateDOB()" onblur="validateDOB()">
+oninput="validateDOB()" onblur="validateDOB(); saveLocalStorage()">
 <br>
 <span id="dobError" class="errorMsg"></span>
 </td>
@@ -135,7 +135,7 @@ oninput="formatSSN(); validateSSN()" onblur="validateSSN()">
 <input type="text" name="addr1" id="addr1" maxlength="30" required
 pattern=".{2,30}"
 title="Enter your street address (2–30 characters)."
-oninput="validateAddr1()" onblur="validateAddr1()">
+oninput="validateAddr1()" onblur="validateAddr1(); saveLocalStorage()">
 <br>
 <span id="addr1Error" class="errorMsg"></span>
 </td>
@@ -147,7 +147,7 @@ oninput="validateAddr1()" onblur="validateAddr1()">
 <input type="text" name="addr2" id="addr2" maxlength="30"
 pattern=".{2,30}"
 title="Optional. Apartment or unit number."
-oninput="validateAddr2()" onblur="validateAddr2()">
+oninput="validateAddr2()" onblur="validateAddr2(); saveLocalStorage()">
 <br>
 <span id="addr2Error" class="errorMsg"></span>
 </td>
@@ -160,7 +160,7 @@ oninput="validateAddr2()" onblur="validateAddr2()">
 <input type="text" name="city" id="city" maxlength="30" required
 pattern=".{2,30}"
 title="Enter city name."
-oninput="validateCity()" onblur="validateCity()">
+oninput="validateCity()" onblur="validateCity(); saveLocalStorage()">
 <br>
 <span id="cityError" class="errorMsg"></span>
 </td>
@@ -229,7 +229,7 @@ oninput="validateCity()" onblur="validateCity()">
 <input type="text" name="zip" id="zip" minlength="5" maxlength="10" required
 pattern="\d{5}"
 title="Enter ZIP (example: 77002 or 77002-1234)."
-oninput="validateZip()" onblur="validateZip()">
+oninput="validateZip()" onblur="validateZip(); saveLocalStorage()">
 <br>
 <span id="zipError" class="errorMsg"></span>
 </td>
@@ -241,7 +241,7 @@ oninput="validateZip()" onblur="validateZip()">
 <td colspan="2">
 <input type="email" name="email" id="email" placeholder="name@domain.com" required
 title="Enter a valid email like name@email.com."
-oninput="validateEmail()" onblur="validateEmail()">
+oninput="validateEmail()" onblur="validateEmail(); saveLocalStorage()">
 <br>
 <span id="emailError" class="errorMsg"></span>
 </td>
@@ -251,7 +251,7 @@ oninput="validateEmail()" onblur="validateEmail()">
 <input type="text" name="phone" id="phone" placeholder="713-555-1212"
 pattern="\d{3}-\d{3}-\d{4}"
 title="Enter phone number like 000-000-0000."
-oninput="validatePhone()" onblur="validatePhone()">
+oninput="validatePhone()" onblur="validatePhone(); saveLocalStorage()">
 <br>
 <span id="phoneError" class="errorMsg"></span>
 </td>
@@ -261,12 +261,15 @@ oninput="validatePhone()" onblur="validatePhone()">
 <tr>
 <td align="right" valign="top">Describe Symptoms</td>
 <td colspan="5">
-<textarea id="symptoms" rows="3" cols="50"
+<textarea id="symptoms"
+rows="3"
+cols="50"
 placeholder="Brief description..."
-title="Optional. Describe your symptoms."></textarea>
+title="Optional. Describe your symptoms."
+onblur="saveLocalStorage()"></textarea>
 </td>
 </tr>
-
+    
 <!-- Checkboxes -->
 <tr>
 <td align="right" valign="top">Medical History</td>
@@ -323,7 +326,7 @@ title="Optional. Describe your symptoms."></textarea>
 <input type="text" name="userId" id="userId" maxlength="20" required
 pattern="[A-Za-z][A-Za-z0-9_-]{4,29}"
 title="5 to 30 characters. Must start with a letter. No spaces."
-oninput="validateUserId()" onblur="validateUserId()">
+oninput="validateUserId()" onblur="validateUserId(); saveLocalStorage()">
 <br>
 <span id="userIdError" class="errorMsg"></span>
 </td>
