@@ -249,3 +249,20 @@ function reviewForm() {
         "<p>Name: " + firstName + " " + lastName + "</p>" +
         "<p>Email: " + email + "</p>";
 }
+
+function loadStates() {
+
+    fetch("states.html")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("state").innerHTML = data;
+
+    })
+
+    .catch(error => {
+
+        document.getElementById("state").innerHTML =
+            '<option value="">States unavailable</option>';
+    });
+}
